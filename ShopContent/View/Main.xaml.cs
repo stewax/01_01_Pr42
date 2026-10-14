@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShopContent.Model;
+using ShopContent.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace ShopContent.View
         public Main()
         {
             InitializeComponent();
+            DataContext = new VMItems();
         }
     }
 }

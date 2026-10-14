@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Mysqlx.Notice;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,12 +13,13 @@ using System.Windows.Shapes;
 namespace ShopContent
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public static MainWindow init;
         public View.Main Main = new View.Main();
+        public View.MainCategory Category = new View.MainCategory();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +27,14 @@ namespace ShopContent
             frame.Navigate(Main);
         }
 
-        private void OpenIndex(object sender, RoutedEventArgs e) =>
+        private void OpenIndex(object sender, MouseButtonEventArgs e)
+        {
             frame.Navigate(Main);
+        }
+
+        private void OpenCategory(object sender, MouseButtonEventArgs e)
+        {
+            frame.Navigate(Category);
+        }
     }
 }

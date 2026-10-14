@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,25 +10,29 @@ namespace ShopContent.Classes
 {
     public class Connection
     {
-        private static readonly string config = "server=localhost;database=ShopContent;port=3306;uid=root;pwd=;";
+        private static readonly string config = "server=localhost;" +
+            "port=3306;" +
+            "database=ShopContent;" +
+            "uid=root;" +
+            "pwd=;";
 
-        public static SqlConnection OpenConnection()
+        public static MySqlConnection OpenConnection()
         {
-            SqlConnection conn = new SqlConnection(config);
-            conn.Open();
-            return conn;
+            MySqlConnection connection = new MySqlConnection(config);
+            connection.Open();
+            return connection;
         }
 
-        public static SqlDataReader Query(string sql, out SqlConnection conn)
+        public static MySqlDataReader Query(string SQL, out MySqlConnection connection)
         {
-            conn = OpenConnection();
-            return new SqlCommand(sql, conn).ExecuteReader();
+            connection = OpenConnection();
+            return new MySqlCommand(SQL, connection).ExecuteReader();
         }
 
-        public static SqlConnection CloseConnection(SqlConnection connection)
+        public static void CloseConnection(MySqlConnection connection)
         {
             connection.Close();
-            SqlConnection.ClearPool(connection);
+            MySqlConnection.ClearPool(connection);
         }
     }
 }
